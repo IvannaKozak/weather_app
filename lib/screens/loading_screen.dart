@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:weather_app/services/location.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -12,22 +13,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Map<Permission, PermissionStatus> status = await [
       Permission.location,
     ].request();
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.low);
-    print(position);
+    var my_location = Location();
+    my_location.getCurrentLocation();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLocation();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            getLocation();
-          },
-          child: Text('Get Location'),
-        ),
-      ),
-    );
+    return Scaffold();
   }
 }
