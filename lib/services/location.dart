@@ -1,4 +1,5 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:weather_app/services/networking.dart';
 
 class Location {
   double latitude;
