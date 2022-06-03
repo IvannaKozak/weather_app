@@ -27,10 +27,12 @@ class _LocationScreenState extends State<LocationScreen> {
       double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       var condition = weatherData['weather'][0]['id'];
+      cityName = weatherData['name'];
+
       weatherIcon = weather.getWeatherIcon(condition);
       weatherMessage = weather.getMessage(temperature);
-      cityName = weatherData['name'];
       print(temperature);
+      print(weatherMessage);
     });
   }
 
@@ -56,7 +58,10 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () async{
+                      var weatherData = await weather.getLocationWeater();
+                      updateUI(weatherData);
+                    },
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
@@ -89,7 +94,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(bottom: 120.0, left: 10.0),
                 child: Text(
-                  "$weatherMessage in $cityName!",
+                  '$weatherMessage in $cityName!',
                   textAlign: TextAlign.left,
                   style: kMessageTextStyle,
                 ),

@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:weather_app/services/location.dart';
 import 'package:weather_app/services/networking.dart';
+import 'package:weather_app/services/weather.dart';
 import 'location_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -27,13 +28,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Map<Permission, PermissionStatus> status = await [
       Permission.location,
     ].request();
-    Location myLocation = Location();
-    await myLocation.getCurrentPosition();
-    
-    NetworkHelper networkHelper = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/weather?lat=${myLocation.latitude}&lon=${myLocation.longitude}&appid=$ApiKey&units=metric');
 
-    var weatherData = await networkHelper.getData();
+    var weatherData = await WeatherModel().getLocationWeater();
     Navigator.push(
       context,
       MaterialPageRoute(
