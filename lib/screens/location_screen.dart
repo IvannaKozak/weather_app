@@ -65,7 +65,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  FlatButton(
+                  TextButton(
                     onPressed: () async{
                       var weatherData = await weather.getLocationWeater();
                       updateUI(weatherData);
@@ -73,9 +73,10 @@ class _LocationScreenState extends State<LocationScreen> {
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
+                      color: Colors.white,
                     ),
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -89,6 +90,7 @@ class _LocationScreenState extends State<LocationScreen> {
                     child: Icon(
                       Icons.location_city,
                       size: 50.0,
+                      color: Colors.white,
                     ),
                   ),
                 ],
