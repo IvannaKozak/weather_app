@@ -19,8 +19,6 @@ class Location {
   }
 }
 
-
-
 Future<Position> _determinePosition() async {
       bool serviceEnabled;
       LocationPermission permission;
